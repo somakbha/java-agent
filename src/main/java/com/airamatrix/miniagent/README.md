@@ -1,19 +1,30 @@
-in Main.java
+Here is a refined, polished version of your write-up. It cleans up the typos, improves the flow, and structures the workflow logically.
 
-1. initilizes the brain (the LLM) and evaluate it by comparing the ouput provided by brain and expected output
+---
 
-2. Once successful, initialize the Brain.
+### System Overview & Execution Flow
 
-3. Brain contains the logic on what action to be proposed based on message content like
+1. **Initialization & Evaluation (`Main.java`)**
+* **Initialize the Brain (LLM):** Set up the primary LLM instance and perform a baseline evaluation by comparing generated outputs against expected test results.
+* **Boot Active Instance:** Upon successful evaluation, initialize the operational `Brain` instance to handle live traffic.
 
-angry=>escalation
-refund => go for human approval
 
-4. Start providing agent with real customer queries
+2. **Core Logic (`Brain.java`)**
+* Maps incoming message content to appropriate actions (e.g., classifying *angry customer feedback* as an escalation or routing a *refund request* for human approval).
 
-5. The agent process the queries one by one and enable input violations like if the message is blank or contains some injection markers like
-ignore all previous, system prompt
 
-6. if the input validation fails, throw violations
+3. **Agent Query Processing & Guardrails**
+* **Query Ingestion:** The agent processes real customer queries sequentially.
+* **Input Validation & Safety:**
+* Intercepts invalid or unsafe inputs (e.g., blank messages, prompt injection attempts like *"ignore all previous instructions"*, or system prompt leaks).
+* Raises explicit violations and halts execution if an input check fails.
 
-7. Also check the output validation like refund is more than ordered amount
+
+* **Output Guardrails:**
+* Enforces domain rules on generated actions before execution (e.g., ensuring a requested refund amount does not exceed the original order value).
+
+
+
+
+
+---
